@@ -1,0 +1,17 @@
+{%extends "master.html"%}
+
+{%block content%}
+<div class="container">
+    <h4 style="color:red">{{msg}}</h4>   <!-- show invalid msg when id & pass incorret-->
+    <h2>Login Please!!</h2>
+    <form method="post">
+        {%csrf_token%}
+    
+<table class="table">
+    <tr><td>Login Id</td><td><input type="text" name="uname" placeholder="uname"/></td></tr>
+    <tr><td>Password</td><td><input type="text" name="pwd" placeholder="password"/></td></tr>
+    <tr><td><button type="submit" class="button btn-success">Login</button></td><td></td></tr>
+</table>
+</form>
+</div>
+{%endblock%}

@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% load static %}   
+	<title>India Tour</title>
+	<meta charset="utf-8">   <!-- universal text format-8-->
+
+	<!--<link rel="stylesheet" href="{% static 'css/demo.css' %}">-->
+  	<meta name="viewport" content="width=device-width, initial-scale=1">  <!-- make website responsive-->
+
+  	<!-- css for news letter-->
+  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  	<link rel=”stylesheet” href=”https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css”>
+
+  	<!-- this for dropdown-->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  	<!-- for animation-->
+  	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+	<style>
+		/* navbar css code */
+		.navbar {
+		border-radius: 5px;
+		margin-top: 20px;
+		font-weight: 900;    /* increase bold size */
+		background-color:  #97B3D0FF !important;  /* more importance to the bg color*/
+		margin-left: 60px;
+		margin-right: 60px;
+		margin-bottom: 50px;
+		border-color:#101111;    /* border to the navbar */
+		border-width: 2px;
+		}
+		.navbar-header
+		{
+			margin-left: 30px;    /* left and right side gap of header */
+			margin-right: 30px;
+		}
+		
+		body
+		{
+			background-color: #DFDCE5FF;      /* bg color of body */
+		}
+		.w3-input
+		{
+			color:#101111;
+		}
+
+		.navbar-nav
+		{
+			margin-top: 10px;  /* gap between top and bottom header with respect to navbar*/
+			margin-bottom: 10px;
+		}
+		/*.ul
+		{
+			align-items: center;
+		}*/
+		.container-fluid
+		{
+			align-items:center;
+			margin-left: 50px;
+			margin-right: 50px;   /* here body container with same spacing from both sides */
+			margin-top: 600px;
+		}
+		
+		.panel-heading {
+		text-align: center;
+		font-family:Comic Sans MS, Comic Sans, cursive;   /* font for heading */
+		}
+
+		/*h1
+		{
+			font-size: 2.1rem;
+			line-height: 1.4;
+			letter-spacing: 0.5em; 
+			text-align: center;
+			color: white;
+			margin-top: 50px;
+		}*/
+		.maindiv
+		{
+			width: 70%;
+			height: 500px;
+			position:absolute;   /* positioned with reference */
+			left: 50%;      /* space from left and right side */
+			top: 50%;
+			transform: translate(-50%,-50%);    /* moving element in x,y axis */
+			background-size: 100% 100%;        /* use 100% size of images */
+			box-shadow: 1px 2px 10px 5px rgb(2, 5, 7);   /* shadow to the animation box */
+			animation: slider 55s infinite linear;     /* animation timing & infinite */
+		}
+		@keyframes slider   /* used for animation of images */
+		{
+			0%{background-image: url('/media/Images/kerala_tourism.jpg');background-size: 100% 100%;}
+			7%{background-image: url('/media/Images/andaman_scuba.jpg');background-size: 100% 100%;}
+			14%{background-image: url('/media/Images/varanasi.jpg');background-size: 100% 100%;}
+			21%{background-image: url('/media/Images/gir-national-park.png');background-size: 100% 100%;}
+			28%{background-image: url('/media/Images/kashmir.JPG');background-size: 100% 100%;}
+			35%{background-image: url('/media/Images/shirdi-sai.jpg');background-size: 100% 100%;}
+			42%{background-image: url('/media/Images/sunderban_National-park.jpg');background-size: 100% 100%;}
+			49%{background-image: url('/media/Images/darjeeling.jpg');background-size: 100% 100%;}
+			56%{background-image: url('/media/Images/chardham.jpg');background-size: 100% 100%;}
+			63%{background-image: url('/media/Images/manali_trekking.jpg');background-size: 100% 100%;}
+			70%{background-image: url('/media/Images/mussoorie.jpg');background-size: 100% 100%;}
+			77%{background-image: url('/media/Images/periyar-national.jpg');background-size: 100% 100%;}
+			84%{background-image: url('/media/Images/red_fort.jpg');background-size: 100% 100%;}
+			90%{background-image: url('/media/Images/river_rafting.jpg');background-size: 100% 100%;}
+			95%{background-image: url('/media/Images/udaipur.jpg');background-size: 100% 100%;}
+			100%{background-image: url('/media/Images/Khajurao.jpg');background-size: 100% 100%;}
+
+
+
+		}
+		/*.bow_how
+		{
+			color: #080303;
+		}*/
+		.w3-container   /* for footer email */
+		{
+			margin-left: 300px;
+			margin-right: 300px;
+			margin-top: 30px;
+		}
+  	</style>
+</head>
+
+<body>
+	 
+	<nav class="navbar bg-info">
+		<div class="col-sm-12">    <!-- divide content into 12 columns-->
+			<div class="navbar-header">
+				<a href="/"><img src="/media/Images/logo.png" alt="abc" height="70px" width="150px"></a>
+			</div>
+			<ul class="nav navbar-nav">
+			    <li><a href="/">Home</a></li>
+			    {%for cat in cats%}     <!-- % code is in django-->  
+				<!-- fetch catogories from cats -->
+			    <li class="dropdown">   <!-- dropdown list created by this class-->
+					<a class="dropdown-toggle" data-toggle="dropdown" href="/showcategory/{{cat.id}}">{{cat.cat_name}}    
+						<!-- pass which content do you want in drop down-->
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+                    	{%for place in places%}  <!-- using for loop fetch the data from views-->
+						{%if place.category.id == cat.id%}   <!-- check if perticular category subcategories present or not-->
+				  		<li><a href="/ViewDetails/{{place.id}}">{{place.place_name}}</a></li>   <!-- show sub categories-->
+				  		{%endif%}
+				  		{%endfor%}
+					</ul>
+			  	</li>
+              	{%endfor%}
+			  
+				{%if "uname" in request.session%}       <!-- create session for uname show only essential options-->
+				<!-- with login -->
+				<li><a href="/Logout"><span class="glyphicon glyphicon-user"></span> Logout </a></li>
+				<li><a href="/ShowAllBookings"><span class="glyphicon glyphicon-shopping-cart"></span> Bookings</a></li>
+				{%else%}
+				<!-- without login -->
+				<li><a href="/Login"><span class="glyphicon glyphicon-user"></span> Login </a></li>
+				<li><a href="/SignUp"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>      
+				{%endif%}
+			</ul>
+	  	</div>
+	</nav>
+	
+	{%block content%}
+		<div class="maindiv"></div>
+			<div class="container-fluid"> 
+
+			<div class="row">
+				{%for place in places%}
+				<div class="col-sm-4">  <!-- content place in 4 column -->
+				<div class="panel panel-primary"> 
+					<div class="panel-heading">{{place.place_name}}</div>
+					<div class="panel-body"><center><img src="{{place.imageurl.url}}" class="img-responsive img-rounded" 
+								style="width:300px;height:200px;" alt="Image"></center></div>
+					<div class="panel-footer" style="min-height:180px;max-height:180px;">
+						<p>Price: {{place.price_Rs}}</p>
+						<p>Day: {{place.day}} &#38; Night: {{place.night}}</p>
+						<p>Description: {{place.description}}</p>
+						<p><a href="/ViewDetails/{{place.id}}">View Details</a></p>   
+						<!-- after clicked on view details redirect to view details page-->
+					</div>	
+				</div>
+				</div> 
+				{%endfor%}
+			</div>
+			</div>
+			<br>
+			<br>
+
+		<div class="container">
+			<div class="main1_title">   <!-- use this class for title to the info -->
+				<div><br></div>
+
+				<h2 style="font-size:45px"><b style="color:brown">WHY CHOOSE US</b></h2>
+				<br>
+			</div>
+				<div class="row">
+					<div class="col-sm-4">
+							<h3 style="color:green"> Quality Services</h3>
+							<p style="text-align:justify;"><b>
+								Customer satisfaction can be only achieved by quality and time to time services. Knock us at any hour and from
+								anywhere in the world, we're available. The company tries to give the ultimate satisfaction and luxury depending
+								upon the traveller's need. We offer a wide range of services.</b>
+							</p>
+					</div>
+
+					<div class="col-sm-4">
+							<h3 style="color:green"> 24x7 Support</h3>
+							<p style="text-align:justify;"><b>
+								When on a foreign land travelling on an unchartered territory, you need a person to depend on, even at odd hours.
+								We work 24 x 7 to support the clients, right from the enquiry stage till the departure, our executives are always
+								ready to take the call, even if it is at odd hours or for odd reasons.</b>
+							</p>
+					</div>
+
+
+					<div class="col-sm-4">
+							<h3 style="color:green"> Our Clients</h3>
+							<p style="text-align:justify;"><b>
+								We are here to render the best services to our clients who are part of our goal. Our clients, over the years, 
+								multiplied from small enterprises to big companies that include both the private and public sector undertakings
+								and thus leading us to spread all over the nation.</b>
+							</p>
+					</div>
+				</div>
+		</div>
+		
+	{%endblock%}
+
+
+	<form>
+		<div class="w3-container">
+			<div class="w3-panel w3-padding-16 w3-black w3-card">
+			  	<h2>Get the best offers first!</h2>
+			  	<p>Join our newsletter.</p>
+			  	<label>E-mail</label>
+			  	<input class="w3-input w3-border" type="text" placeholder="Your Email address" name="mail"/>
+			  	<button type="button" class="w3-button w3-red w3-margin-top"">Subscribe</button>
+			</div>
+		</div>
+	</form>
+		 
+		  
+</body>
+</html>

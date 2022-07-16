@@ -1,0 +1,60 @@
+{%extends "master.html"%}
+{%block content%}
+<script type="text/javascript">
+    function increment(id)
+    {
+        txt_qty =  document.getElementById(id);      /* fetch value from txtbox by id */
+        if(txt_qty.value <10)       /* max value will be 10 */
+        {           
+            txt_qty.value = parseInt(txt_qty.value)+1;       /* add values when incremented */
+        }
+    }
+    function decrement(id)
+    {
+        txt_qty =  document.getElementById(id);    /* fetch value from txtbox by id */
+        if(txt_qty.value >1)         /* min value will be 1 */
+        {           
+            txt_qty.value = txt_qty.value-1;      /* substract values when decremented */
+        }
+
+    }
+</script>
+<div class="container">
+    <h2>All Bookings</h2>
+    
+    <table class="table">
+        <tr><th>Booked By</th><th>Place Name</th><th>Tour Price</th><th>Persons</th><th>Date of Travelling</th>
+        <th>Update</th><th>Sub Total</th><th>Cancel Bookings</th></tr>
+        {%for item in items%}
+        <form method="post">
+            {%csrf_token%}
+            <!-- fetch respective column values -->
+            <tr><td>{{user.username}}</td>
+                <td>{{item.tourism.place_name}}<input type="hidden" name="place_id" value="{{item.tourism.id}}"/></td>
+                <td>{{item.tourism.price_Rs}}</td>
+                <td>
+                    <button type="button" id="decre" class="btn btn-warning" 
+                        onclick="decrement('item_qty{{item.tourism.id}}');">-</button>
+                        <input type="text" size="4" readonly id="item_qty{{item.tourism.id}}" value="{{item.persons}}" name="qty"/>
+                    <button type="button" id="incre" class="btn btn-warning" 
+                        onclick="increment('item_qty{{item.tourism.id}}');">+</button>
+                </td>
+                <td>{{date}}</td>
+                <td>
+                    <button type="submit" name="action" class="btn btn-danger" value="update">Update</button>
+                </td>
+                <td>{% widthratio item.tourism.price_Rs 1 item.persons %}</td>
+                <td>
+                    <button type="submit" name="action" class="btn btn-danger" value="cancel">Cancel</button>
+                </td>
+            </tr>
+        </form>
+        {%endfor%}  
+    </table>
+
+
+    <hr/>
+    <h3>Total  : {{request.session.total}}</h3>    <!-- store total in session -->
+    <a href="/MakePayment" class="btn btn-success">Proceed to make Payment</a>
+</div>
+{%endblock%}

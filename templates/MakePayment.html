@@ -1,0 +1,26 @@
+{%extends "master.html"%}
+{%block content%}
+<div class="container">
+    <h4 style="color:red">{{msg}}</h4>    <!-- show  msg when card details are invalid and when insufficient balance-->
+    <h3>Total  : {{request.session.total}}</h3>  <!-- fetch total value -->
+    <h2>Make Payment</h2>
+    <form method="post">
+        <div class="form-group">
+        {%csrf_token%}    
+        <table class="table">      <!-- create table using class-->
+            <tr><td>Enter Name On Card</td><td>
+                <input class="form-control" type="text" 
+                name="uname" placeholder="Name on card" maxlength="25"/></td></tr>  
+            <tr><td>Enter Card No.</td><td>
+                <input class="form-control" type="text" name="card_no" placeholder="Card Number" maxlength="16"/></td></tr>   <!-- here limit card no should be 16 nos-->
+            <tr><td>Enter Expiry</td><td>
+                <input type="text" class="form-control" name="expiry" placeholder="MM/YYYY" maxlength="7"/></td></tr>      <!-- date should be in mm/yyyy format-->
+            <tr><td>Enter CVV</td><td>
+                    <input type="text" class="form-control" 
+                    name="cvv" placeholder="CVV" maxlength="3"/></td></tr>    
+            <tr><td><button type="submit"  class="btn btn-success">Make Payment</button></td><td></td></tr>
+        </table>
+        </div>
+    </form>
+</div>
+{%endblock%}
